@@ -1,5 +1,4 @@
 let coutDownDate = new Date('Dec 31, 2024 23:59:59').getTime();
-console.log(coutDownDate);
 
 let counter = setInterval(() => {
   // Get Date Now
@@ -25,3 +24,15 @@ let counter = setInterval(() => {
  
   }
 }, 1000);
+
+// Our-Skills Effect Scrolling 
+let section = document.querySelector(".our-skills");
+let progressSpans = document.querySelectorAll(".the-progress span");
+
+window.onscroll = () => {
+  if (window.scrollY >= section.offsetTop - 250) {
+    progressSpans.forEach((span) => {
+      span.style.width = span.dataset.width;
+    });
+  }
+};
