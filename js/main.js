@@ -70,3 +70,27 @@ document.addEventListener("DOMContentLoaded", () => {
   numbers.forEach(startCount);
 });
 
+//Hide and Show Mega Menu With Using Event When using Mouse 
+document.addEventListener("DOMContentLoaded", () => {
+  const otherLinks = document.querySelector(
+    '.header .main-nav li a[href="#other_links"]'
+  );
+  const megaMenu = document.querySelector(".header .mega-menu");
+
+  const showMegaMenu = () => {
+    megaMenu.style = "opacity: 1; top: calc(100% + 1px); z-index: 100;";
+  };
+
+  const hideMegaMenu = () => {
+    megaMenu.style = "opacity: 0; top: calc(100% + 50px); z-index: -1;";
+  };
+
+  otherLinks.addEventListener("mouseenter", showMegaMenu);
+
+  otherLinks.addEventListener("click", (event) => {
+    event.preventDefault();
+    megaMenu.style.opacity !== "1" ? showMegaMenu() : hideMegaMenu();
+  });
+
+  megaMenu.addEventListener("mouseleave", hideMegaMenu);
+});
