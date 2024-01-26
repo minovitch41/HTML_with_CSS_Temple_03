@@ -36,3 +36,37 @@ window.onscroll = () => {
     });
   }
 };
+
+
+//Number Count Stats
+document.addEventListener("DOMContentLoaded", () => {
+  const numbers = document.querySelectorAll(".stats .box .number");
+
+  function startCount(el) {
+    const goal = parseInt(el.dataset.goal);
+    const increment = goal > 1000 ? Math.ceil(goal / 100) : 1;
+
+    let current = 0;
+    const count = setInterval(() => {
+      current += increment;
+      el.textContent =
+        current >= goal ? formatNumber(goal) : formatNumber(current);
+      if (current >= goal) clearInterval(count);
+    }, 20);
+  }
+//this function to change numbers like 1,500 ==> 1,5K 
+  function formatNumber(number) {
+    const suffixes = ["", "K", "M"];
+    let suffixIndex = 0;
+
+    while (number >= 1000) {
+      number /= 1000;
+      suffixIndex++;
+    }
+
+    return `${number.toFixed(1).replace(/\.0$/, "")}${suffixes[suffixIndex]}`;
+  }
+
+  numbers.forEach(startCount);
+});
+
